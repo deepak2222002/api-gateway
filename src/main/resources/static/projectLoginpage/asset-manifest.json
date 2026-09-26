@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/WebApplication/projectLoginpage/static/css/main.9a414a4c.css",
+    "main.js": "/WebApplication/projectLoginpage/static/js/main.21a3a371.js",
+    "static/js/453.2efce6ab.chunk.js": "/WebApplication/projectLoginpage/static/js/453.2efce6ab.chunk.js",
+    "static/media/companylogo.png": "/WebApplication/projectLoginpage/static/media/companylogo.c8b0d91524cf726c64e7.png",
+    "static/media/loginBackground.jpg": "/WebApplication/projectLoginpage/static/media/loginBackground.985507de0c45a5a0c0e1.jpg",
+    "static/media/default2.png": "/WebApplication/projectLoginpage/static/media/default2.4dbde45bfd7886de7c25.png",
+    "index.html": "/WebApplication/projectLoginpage/index.html",
+    "main.9a414a4c.css.map": "/WebApplication/projectLoginpage/static/css/main.9a414a4c.css.map",
+    "main.21a3a371.js.map": "/WebApplication/projectLoginpage/static/js/main.21a3a371.js.map",
+    "453.2efce6ab.chunk.js.map": "/WebApplication/projectLoginpage/static/js/453.2efce6ab.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a414a4c.css",
+    "static/js/main.21a3a371.js"
+  ]
+}
