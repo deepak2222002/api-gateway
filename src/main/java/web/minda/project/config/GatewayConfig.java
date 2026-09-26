@@ -23,7 +23,7 @@ public class GatewayConfig {
                         .or(path("/projectModuleDashboard/**")),
                     http()
                 )
-                .before(uri("https://localhost:8091"))
+                .before(uri("https://auth-service:8091"))
                 .build();
     }
 
@@ -35,7 +35,7 @@ public class GatewayConfig {
                     path("/user/**"),
                     http()
                 )
-                .before(uri("https://localhost:8092"))
+                .before(uri("https://user-service:8092"))
                 .build();
     }
 }
