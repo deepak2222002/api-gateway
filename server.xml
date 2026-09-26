@@ -59,7 +59,7 @@
                         certificateKeystoreFile="conf/jobportal-ssl.p12"
                         certificateKeystorePassword="remote"
                         certificateKeystoreType="PKCS12"
-                        certificateKeyAlias="jobportal-ssl"
+                        certificateKeyAlias="remote"
                         type="RSA" />
 
             </SSLHostConfig>
