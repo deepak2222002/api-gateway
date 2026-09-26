@@ -6,6 +6,8 @@ RUN rm -rf webapps/*
 
 COPY target/*.war webapps/ROOT.war
 
+COPY server.xml conf/server.xml
+
 COPY src/main/resources/jobportal-ssl.p12 conf/jobportal-ssl.p12
 
 EXPOSE 8080
