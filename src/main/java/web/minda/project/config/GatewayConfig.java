@@ -52,7 +52,7 @@ public class GatewayConfig {
     @Bean
     public RouterFunction<ServerResponse> userActivateServiceRoute() {
 
-        return route("user-activate-service")
+        return route("user-activation-service")
                 .route(
                     path("/activate/**"),
                     http()

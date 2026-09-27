@@ -35,6 +35,7 @@ pipeline {
                     -p 8090:8443 \
                     -e AUTH_SERVICE_URL=https://auth-service:8443 \
   					-e USER_SERVICE_URL=https://user-service:8443 \
+  					-e USER_ACTIVATION_SERVICE_URL=https://user-activation-service:8443 \
                     -e KAFKA_BOOTSTRAP_SERVERS="kafka:9092" \
                     -e MAIL_PASSWORD="$MAIL_PASSWORD" \
                     api-gateway
