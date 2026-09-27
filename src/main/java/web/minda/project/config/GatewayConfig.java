@@ -1,5 +1,6 @@
 package web.minda.project.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.function.RouterFunction;
@@ -13,6 +14,12 @@ import static org.springframework.web.servlet.function.RequestPredicates.path;
 @Configuration
 public class GatewayConfig {
 
+    @Value("${gateway.auth.url}")
+    private String authServiceUrl;
+
+    @Value("${gateway.user.url}")
+    private String userServiceUrl;
+
     @Bean
     public RouterFunction<ServerResponse> authServiceRoute() {
 
@@ -23,7 +30,7 @@ public class GatewayConfig {
                         .or(path("/projectModuleDashboard/**")),
                     http()
                 )
-                .before(uri("https://auth-service:8091"))
+                .before(uri(authServiceUrl))
                 .build();
     }
 
@@ -35,7 +42,7 @@ public class GatewayConfig {
                     path("/user/**"),
                     http()
                 )
-                .before(uri("https://user-service:8092"))
+                .before(uri(userServiceUrl))
                 .build();
     }
 }
