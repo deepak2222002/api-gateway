@@ -19,6 +19,9 @@ public class GatewayConfig {
 
     @Value("${gateway.user.url}")
     private String userServiceUrl;
+    
+    @Value("${gateway.userActivate.url}")
+    private String userActivateServiceUrl;
 
     @Bean
     public RouterFunction<ServerResponse> authServiceRoute() {
@@ -43,6 +46,18 @@ public class GatewayConfig {
                     http()
                 )
                 .before(uri(userServiceUrl))
+                .build();
+    }
+    
+    @Bean
+    public RouterFunction<ServerResponse> userActivateServiceRoute() {
+
+        return route("user-activate-service")
+                .route(
+                    path("/activate/**"),
+                    http()
+                )
+                .before(uri(userActivateServiceUrl))
                 .build();
     }
 }
