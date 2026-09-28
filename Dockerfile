@@ -1,16 +1,9 @@
-FROM tomcat:10.1-jdk21
+FROM eclipse-temurin:21-jre
 
-WORKDIR /usr/local/tomcat
+WORKDIR /app
 
-RUN rm -rf webapps/*
+COPY target/*.jar app.jar
 
-COPY target/*.war webapps/ROOT.war
+EXPOSE 8090
 
-COPY server.xml conf/server.xml
-
-COPY src/main/resources/jobportal-ssl.p12 conf/jobportal-ssl.p12
-
-EXPOSE 8080
-EXPOSE 8443
-
-CMD ["catalina.sh", "run"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

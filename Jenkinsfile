@@ -18,27 +18,14 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t api-gateway .'
+                sh 'docker build -t api-gateway:1.0 .'
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                    docker stop api-gateway || true
-                    docker rm api-gateway || true
-
-                    docker run -d \
-                    --name api-gateway \
-                    --network backend_default \
-                    --restart unless-stopped \
-                    -p 8090:8443 \
-                    -e AUTH_SERVICE_URL=https://auth-service:8443 \
-  					-e USER_SERVICE_URL=https://user-service:8443 \
-  					-e USER_ACTIVATION_SERVICE_URL=https://user-activation-service:8443 \
-                    -e KAFKA_BOOTSTRAP_SERVERS="kafka:9092" \
-                    -e MAIL_PASSWORD="$MAIL_PASSWORD" \
-                    api-gateway
+                    kubectl apply -f k8s/api-gateway.yaml
                 '''
             }
         }
