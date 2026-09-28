@@ -26,13 +26,13 @@ spec:
 
           env:
             - name: AUTH_SERVICE_URL
-              value: "https://auth-service:8443"
+              value: "https://auth-service:8091"
 
             - name: USER_SERVICE_URL
-              value: "https://user-service:8443"
+              value: "https://user-service:8092"
 
             - name: USER_ACTIVATION_SERVICE_URL
-              value: "https://user-activation-service:8443"
+              value: "https://user-activation-service:8094"
 
             - name: KAFKA_BOOTSTRAP_SERVERS
               value: "kafka:9092"
