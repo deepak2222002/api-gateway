@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+        DOCKER_IMAGE = 'deepak2222002/api-gateway:1.0'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -10,7 +14,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build JAR') {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
@@ -18,7 +22,29 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t api-gateway:1.0 .'
+                sh 'docker build -t $DOCKER_IMAGE .'
+            }
+        }
+
+        stage('Docker Login & Push') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login \
+                            -u "$DOCKER_USERNAME" \
+                            --password-stdin
+
+                        docker push "$DOCKER_IMAGE"
+
+                        docker logout
+                    '''
+                }
             }
         }
 
@@ -30,5 +56,14 @@ pipeline {
             }
         }
 
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    kubectl rollout status deployment/api-gateway
+                    kubectl get pods
+                    kubectl get service api-gateway
+                '''
+            }
+        }
     }
 }
