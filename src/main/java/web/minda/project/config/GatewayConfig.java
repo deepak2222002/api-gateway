@@ -39,7 +39,7 @@ public class GatewayConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOrigins(List.of(
-                "http://localhost:3000"
+                "http://localhost:8081"
         ));
 
         config.setAllowedMethods(List.of(
@@ -87,7 +87,8 @@ public class GatewayConfig {
 
         return route("user-service")
                 .route(
-                        path("/user/**"),
+                        path("/user/**")
+                        .or(path("/graphql/**")),
                         http()
                 )
                 .before(uri(userServiceUrl))
